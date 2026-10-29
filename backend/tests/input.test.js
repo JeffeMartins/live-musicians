@@ -1,0 +1,3 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');const parse=require('../src/utils/ParseStringAsArray');const coords=require('../src/utils/validateCoordinates');
+test('technology normalization is deterministic and does not leak a global',()=>{assert.deepEqual(parse(' React, Node,React, '),['React','Node']);assert.equal(global.parseStringArray,undefined);assert.throws(()=>parse(null));});
+test('coordinates are numbers in longitude/latitude order',()=>{assert.deepEqual(coords('-23.5','-46.6'),[-46.6,-23.5]);for(const pair of [[91,0],[0,181],['',1],['invalid',1]])assert.throws(()=>coords(...pair));});

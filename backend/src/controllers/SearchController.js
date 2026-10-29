@@ -16,7 +16,7 @@ module.exports = {
                 $near: {
                     $geometry: {
                         type: 'Point',
-                        coordinates: [longitude, latitude],
+                        coordinates: require('../utils/validateCoordinates')(latitude, longitude),
                     },
                     $maxDistance: 10000,
                 }
